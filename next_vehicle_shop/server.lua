@@ -55,7 +55,7 @@ function LoadVehicle( data )
 		if isElement( player ) then
 			_Vehicle( data, true )
 		end
-	elseif getElementType( data ) == "player" then
+	elseif isElement( data ) and getElementType( data ) == "player" then
 		DB:query( function( query, player ) 
 			if isElement( player ) then
 				local result = query:poll( -1 )
