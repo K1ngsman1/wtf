@@ -15,7 +15,7 @@ function AddVehicle( conf )
 	LoadVehicle( self )
 end
 
-function _Vehicle( data, waprToVehicle )
+function _Vehicle( data, warpToVehicle )
 	if not isElement( data.player ) then
 		-- если игрок вдруг вышел - не создаем машину
 		return false
@@ -41,7 +41,7 @@ function _Vehicle( data, waprToVehicle )
 	end
 	addEventHandler( "onElementDestroy", vehicle, OnDestroy )
 
-	if waprToVehicle then
+	if warpToVehicle then
 		warpPedIntoVehicle( data.player, vehicle )
 	end
 	
