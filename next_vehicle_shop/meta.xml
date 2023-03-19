@@ -1,0 +1,17 @@
+<meta> 
+	<oop>true</oop> 
+
+	<script src="shared.lua" type="shared" />
+
+	<script src="client_utils.lua" type="client" />
+	<script src="client_ui.lua" type="client" />
+
+	<script src="server_db.lua" type="server" />
+	<script src="server.lua" type="server" />
+
+	<file src="img/vehicle.png" />
+
+	<file src="fonts/hb.ttf" />
+	<file src="fonts/hb_bold.ttf" />
+	<file src="fonts/hb_medium.ttf" />
+</meta> 
