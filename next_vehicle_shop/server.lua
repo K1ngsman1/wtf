@@ -2,6 +2,7 @@ VEHICLES = { }
 VEHICLES_DATA = { }
 VEHICLES_FROM_OWNER = { }
 NUMBERS_USED = { }
+VEHICLE_SAVE_TIMER = { }
 
 function AddVehicle( conf )
 	local self = conf or { }
@@ -43,6 +44,8 @@ function _Vehicle( data, waprToVehicle )
 	if waprToVehicle then
 		warpPedIntoVehicle( data.player, vehicle )
 	end
+	
+	VEHICLE_SAVE_TIMER[ vehicle ] = setTimer( SaveVehicle, ( 5 * 600000 ), 0, data.player ) -- автосохранение каждые 5 мин
 	return vehicle
 end
 
@@ -74,6 +77,7 @@ function LoadNumberPlates( query )
 end
 
 function SaveVehicle( player, bDestroy )
+	if not isElement( player ) then return end
 	local vehicle = VEHICLES_FROM_OWNER[ player.serial ] or nil
 	if not isElement( vehicle ) then
 		return false
@@ -91,6 +95,7 @@ function SaveVehicle( player, bDestroy )
 			VEHICLES_DATA[ vehicle ] = nil
 			if isElement( vehicle ) then destroyElement( vehicle ) end
 			VEHICLES_FROM_OWNER[ player.serial ] = nil
+			if isTimer( VEHICLE_SAVE_TIMER[ vehicle ] ) then killTimer( VEHICLE_SAVE_TIMER[ vehicle ] ) end
 		end
 	end
 end
@@ -112,6 +117,7 @@ function DestroyVehicle( player )
 		VEHICLES_FROM_OWNER[ player.serial ] = nil
 		VEHICLES_DATA[ vehicle ] = nil
 		if isElement( vehicle ) then destroyElement( vehicle ) end
+		if isTimer( VEHICLE_SAVE_TIMER[ vehicle ] ) then killTimer( VEHICLE_SAVE_TIMER[ vehicle ] ) end
 	end
 end
 
