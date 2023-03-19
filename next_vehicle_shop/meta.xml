@@ -1,5 +1,7 @@
 <meta> 
-	<oop>true</oop> 
+	<oop>true</oop>
+	
+	<info author="@ganzes77"/>
 
 	<script src="shared.lua" type="shared" />
 
