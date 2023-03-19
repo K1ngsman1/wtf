@@ -176,10 +176,9 @@ addEventHandler( "PlayerWantSellVehicle", resourceRoot, function( )
 	local conf = _VEHICLES[ _client_vehicle.model ]
 	if conf then
 		givePlayerMoney( client, conf.cost / 2 )
+		DestroyVehicle( client )
+		client:outputChat( "Вы успешно продали свою тачку за "..conf.cost / 2, 0, 255, 0 )
 	end
-
-	DestroyVehicle( client )
-	client:outputChat( "Вы успешно продали свою тачку за "..conf.cost / 2, 0, 255, 0 )
 end)
 
 addEvent( "PlayerWantChangeVehicleNumber", true )
@@ -236,13 +235,13 @@ function OnPlayerQuit_handler( )
 end
 addEventHandler( "onPlayerQuit", root, OnPlayerQuit_handler )
 
-addCommandHandler( "ld", function( self ) 
+addCommandHandler( "addvehicle", function( self, cmd, model ) 
 	AddVehicle( {
 		player = self,
-		model = 429
+		model = tonumber( model ) or 429
 	} )
 end)
 
-addCommandHandler( "dl", function( self ) 
+addCommandHandler( "delvehicle", function( self ) 
 	DestroyVehicle( self )
 end)
