@@ -1,4 +1,4 @@
-local _DB_DATA = {
+local _DB_DATA = { -- P.S; Вводите свои данные :)
 	dbname = "veh_shop",
 	user = "ganzes77",
 	pass = "ganzes77_123",
